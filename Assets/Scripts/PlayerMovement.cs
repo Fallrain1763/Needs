@@ -1,43 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public InputAction playMovement;
-    public float moveSpeed = 5f;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
-    
-    Vector2 moveDirection = Vector2.zero;
-    
+    Rigidbody2D rb;
+    Vector2 moveInput;
+    public float moveSpeed;
+    Animator animator;
+    SpriteRenderer spriteRenderer;
 
-    private void OnEnable()
+    private void Awake()
     {
-        playMovement.Enable();
-    }
-      private void OnDisable()
-    {
-        playMovement.Disable();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    private void OnMove(InputValue value)
     {
-        moveDirection = playMovement.ReadValue<Vector2>();
-        if(moveDirection == Vector2.zero)
+        moveInput = value.Get<Vector2>();
+        if(moveInput == Vector2.zero)
         {
             animator.SetBool("isWalking", false);
         }
         else
         {
             animator.SetBool("isWalking", true);
-            if(moveDirection.x > 0)
+            if(moveInput.x > 0)
             {
                 spriteRenderer.flipX = false;
             }
-            if(moveDirection.x < 0)
+            if(moveInput.x < 0)
             {
                 spriteRenderer.flipX = true;
             }
@@ -46,11 +42,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.AddForce(moveInput * moveSpeed);
     }
 
-
-
-    
 
 }
