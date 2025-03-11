@@ -40,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnFire()
+    {
+        animator.SetTrigger("swordAttack");
+    }
+
     private void FixedUpdate()
     {
         rb.AddForce(moveInput * moveSpeed);
