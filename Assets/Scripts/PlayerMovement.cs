@@ -46,6 +46,22 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetTrigger("swordAttack");
     }
+    void OnDie()
+    {
+        animator.SetTrigger("isDead");
+    }
+
+    void OnDamage()
+    {
+        print("OnDamage");
+    }
+
+    #region Animation method
+    private void OnDestroy()
+    {
+        gameObject.SetActive(false);     
+    }
+    #endregion
 
     private void FixedUpdate()
     {

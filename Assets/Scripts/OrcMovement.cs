@@ -10,6 +10,8 @@ public class OrcMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     public float speed;
+    public int attackPower;
+    public int knockBackForce;
 
     private void Awake()
     {
@@ -37,6 +39,20 @@ public class OrcMovement : MonoBehaviour
     void OnDie()
     {
         animator.SetTrigger("isDead");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D collider = collision.collider;
+        IDamageable damageable = collider.GetComponent<IDamageable>();
+
+        if (damageable != null && collider.tag == "Player")
+        {
+            Vector2 direction = collider.transform.position - transform.position;
+            Vector2 force = direction.normalized * knockBackForce;
+
+            damageable.OnHit(attackPower, force);
+        }
     }
 
     private void FixedUpdate()
