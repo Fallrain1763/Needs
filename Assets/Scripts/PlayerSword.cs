@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerSword : MonoBehaviour
 {
     Vector3 position;
+    private int attackPower;
+    public int knockbackForce;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,20 @@ public class PlayerSword : MonoBehaviour
         else
         {
             transform.localPosition = new Vector3(-position.x, position.y, position.z);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        IDamageable damageable= collider.GetComponent<IDamageable>();
+        
+        if (damageable != null)
+        {
+            Vector3 _postion = transform.parent.position;
+            Vector2 direction = collider.transform.position - _postion;
+
+            attackPower = 1;
+            damageable.OnHit(attackPower, direction * knockbackForce);
         }
     }
 

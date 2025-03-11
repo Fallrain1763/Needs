@@ -7078,6 +7078,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1402514553238544297, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
+      propertyPath: knockbackForce
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1646085509973667704, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7086,21 +7090,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 1813976169897748138, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5384314961763911150, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6342241245146142518, guid: d90d7a221c51b3d47a20a1c27617d7c6, type: 3}
     - target: {fileID: 5983434898212832260, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.68
+      value: 21.33
       objectReference: {fileID: 0}
     - target: {fileID: 5983434898212832260, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.37
+      value: -12.23
       objectReference: {fileID: 0}
     - target: {fileID: 5983434898212832260, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
       propertyPath: m_LocalPosition.z
