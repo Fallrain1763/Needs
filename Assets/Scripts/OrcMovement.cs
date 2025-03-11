@@ -29,6 +29,16 @@ public class OrcMovement : MonoBehaviour
         animator.SetBool("isWalking", false);
     }
 
+    void OnDamage()
+    {
+        animator.SetTrigger("isDamage");
+    }
+
+    void OnDie()
+    {
+        animator.SetTrigger("isDead");
+    }
+
     private void FixedUpdate()
     {
         if (detectionZone.detactedObjs != null)
