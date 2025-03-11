@@ -32,10 +32,12 @@ public class PlayerMovement : MonoBehaviour
             if(moveInput.x > 0)
             {
                 spriteRenderer.flipX = false;
+                gameObject.BroadcastMessage("IsFacingRight", true);
             }
             if(moveInput.x < 0)
             {
                 spriteRenderer.flipX = true;
+                gameObject.BroadcastMessage("IsFacingRight", false);
             }
         }
     }
