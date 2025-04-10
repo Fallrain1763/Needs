@@ -38,6 +38,11 @@ public class PlayerSword : MonoBehaviour
             attackPower = 1;
             damageable.OnHit(attackPower, direction * knockbackForce);
         }
+
+        if (collider.gameObject.CompareTag("wood"))
+        {
+            
+        }
     }
 
     // Update is called once per frame

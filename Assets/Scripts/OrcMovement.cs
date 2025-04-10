@@ -19,6 +19,7 @@ public class OrcMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         detectionZone = GetComponent<DetectionZone>();
+
     }
 
     public void OnWalk()
@@ -38,6 +39,7 @@ public class OrcMovement : MonoBehaviour
 
     void OnDie()
     {
+        PlayerMovement.isOrcDead = true;
         animator.SetTrigger("isDead");
     }
 

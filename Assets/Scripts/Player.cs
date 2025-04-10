@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 
@@ -28,31 +30,55 @@ public class Player : MonoBehaviour
     public bool drinkingWater = false;
 
     public bool inShop = false;
+    public int woodCount;
+    public TMP_Text woodText;
+
+    public GameObject dialogue;
+    public Dialogue DS;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateNeedsLevels", 3.0f, 1.0f);
+        DS = dialogue.GetComponent<Dialogue>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(inBed){
-            energyLevel+=0.005f;
+            energyLevel+=0.01f;
             energyLevel = Mathf.Min(energyLevel, 99.0f);
         }
 
         if(drinkingWater){
-            waterLevel+=0.0025f;
+            waterLevel+=0.005f;
             waterLevel = Mathf.Min(waterLevel, 100.0f);
         }
 
         if(inShop && Input.GetKeyDown(KeyCode.E)){
             PurchaseItems();
-        } else if(inShop && Input.GetKeyDown(KeyCode.R)){
-            SellItems();
+        } 
+        
+        if(Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene("MainArea");
         }
+
+/*
+        if(energyLevel == 0)
+        {
+            IDamageable damageable = GetComponent<IDamageable>(); 
+            damageable.OnHit(3,new Vector2(0,0));
+        }
+
+         if(waterLevel == 0)
+        {
+            IDamageable damageable = GetComponent<IDamageable>(); 
+            damageable.OnHit(3,new Vector2(0,0));
+        }
+        */
+
+        woodText.text = woodCount.ToString();
         
     }
 
@@ -64,7 +90,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float value){
         health -= value;
-        healthBar.value = health/100.0f;
+        healthBar.value = health/3.0f;
 
     }
 
@@ -74,7 +100,7 @@ public class Player : MonoBehaviour
     }
 
     private void PurchaseItems(){
-        Debug.Log("Buying items....");
+        DS.StartDialogue();
     }
 
     private void SellItems(){

@@ -12,12 +12,19 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     Animator animator;
     SpriteRenderer spriteRenderer;
+    Player player;
+    
+    public Sprite chestOpen;
+    public GameObject crown;
+
+    public static bool isOrcDead = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GetComponent<Player>();
     }
 
     private void OnMove(InputValue value)
@@ -54,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDamage()
     {
-        print("OnDamage");
+        player.TakeDamage(1);
     }
 
     #region Animation method
@@ -67,6 +74,25 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(moveInput * moveSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "wood")
+        {
+            Destroy(collider.gameObject);
+            player.woodCount += 1;
+        }
+
+         if (collider.gameObject.tag == "Chest")
+         {
+            if(Dialogue.isKey)
+            {
+                collider.GetComponent<SpriteRenderer>().sprite = chestOpen;
+                crown.SetActive(true);
+                Dialogue.isChestOpen = true;
+            }
+         }
     }
 
 

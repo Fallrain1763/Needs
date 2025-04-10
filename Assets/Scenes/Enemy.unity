@@ -76925,13 +76925,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 5638160757881031227, guid: ebcd6a5cc43eb49489c93da859b86902, type: 3}
+      propertyPath: viewRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8016196153551324319, guid: ebcd6a5cc43eb49489c93da859b86902, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.12
+      value: 30.02
       objectReference: {fileID: 0}
     - target: {fileID: 8016196153551324319, guid: ebcd6a5cc43eb49489c93da859b86902, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.65
+      value: -14.87
       objectReference: {fileID: 0}
     - target: {fileID: 8016196153551324319, guid: ebcd6a5cc43eb49489c93da859b86902, type: 3}
       propertyPath: m_LocalPosition.z

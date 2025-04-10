@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detactedObjs: {fileID: 0}
-  viewRadius: 6
+  viewRadius: 8
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
