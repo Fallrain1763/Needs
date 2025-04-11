@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bed
   - wood
+  - Chest
   layers:
   - Default
   - TransparentFX
