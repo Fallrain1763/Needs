@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
@@ -21,6 +20,9 @@ public class Dialogue : MonoBehaviour
     public static bool isKey = false;
     public static bool isChestOpen = false;
 
+    [SerializeField]
+    private bool didDisplay = false; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,10 +33,10 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            textComponent.text = string.Empty;
-        }
+        // if(Input.GetMouseButtonDown(0))
+        // {
+        //     textComponent.text = string.Empty;
+        // }
 
 
         if(int.Parse(woodcount.text) == 10)
@@ -51,11 +53,19 @@ public class Dialogue : MonoBehaviour
         {
             index = 3;
         }
+
+        if(Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene("MainArea");
+        }
   
     }
 
     public void  StartDialogue()
     {
+        if(didDisplay==true) return;
+
+        didDisplay = true;
+
         if(index == 1)
         {
             orc.SetActive(true);
@@ -68,6 +78,11 @@ public class Dialogue : MonoBehaviour
         }
 
         StartCoroutine(TypeLine());
+    }
+
+    public void StopDialogue(){
+        textComponent.text = string.Empty;
+        didDisplay = false;
     }
 
     IEnumerator TypeLine()

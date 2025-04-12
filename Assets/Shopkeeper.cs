@@ -8,6 +8,8 @@ public class Shopkeeper : MonoBehaviour
   public InteractArrow arrow;
 
   public bool inRange = false;
+
+  public Dialogue dialogue;
    void Start()
     {
         arrow = GetComponentInChildren<InteractArrow>();
@@ -33,6 +35,7 @@ public class Shopkeeper : MonoBehaviour
         if(collider.CompareTag("Player")){
             arrow.gameObject.SetActive(false);
             collider.GetComponent<Player>().inShop = false;
+            dialogue.StopDialogue();
         }
     }
 }

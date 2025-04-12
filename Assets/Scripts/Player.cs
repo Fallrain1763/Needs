@@ -59,24 +59,20 @@ public class Player : MonoBehaviour
         if(inShop && Input.GetKeyDown(KeyCode.E)){
             PurchaseItems();
         } 
+
+
+        if(energyLevel <= 0)
+        {
+            IDamageable damageable = GetComponent<IDamageable>(); 
+            damageable.OnHit(3,new Vector2(0,0));
+        }
+
+         if(waterLevel <= 0)
+        {
+            IDamageable damageable = GetComponent<IDamageable>(); 
+            damageable.OnHit(3,new Vector2(0,0));
+        }
         
-        if(Input.GetKeyDown(KeyCode.R)){
-            SceneManager.LoadScene("MainArea");
-        }
-
-/*
-        if(energyLevel == 0)
-        {
-            IDamageable damageable = GetComponent<IDamageable>(); 
-            damageable.OnHit(3,new Vector2(0,0));
-        }
-
-         if(waterLevel == 0)
-        {
-            IDamageable damageable = GetComponent<IDamageable>(); 
-            damageable.OnHit(3,new Vector2(0,0));
-        }
-        */
 
         woodText.text = woodCount.ToString();
         
