@@ -6940,6 +6940,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 700
       objectReference: {fileID: 0}
+    - target: {fileID: 5384314961763911150, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5422473023875083254, guid: 25a4049855209764aba0e4dffd41a4a1, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -63471,11 +63475,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyLevel: 100
   energyConsumptionRate: 1
+  energyRecharge: 15
   healthBar: {fileID: 1908441463}
   health: 3
   energySlider: {fileID: 1107495650}
   waterLevel: 100
   waterConsumptionRate: 0.5
+  waterRecharge: 20
   waterSlider: {fileID: 677019884}
   inBed: 0
   drinkingWater: 0

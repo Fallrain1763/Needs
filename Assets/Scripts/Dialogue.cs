@@ -57,6 +57,10 @@ public class Dialogue : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)){
             SceneManager.LoadScene("MainArea");
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Application.Quit(0);
+        }
   
     }
 
@@ -81,8 +85,9 @@ public class Dialogue : MonoBehaviour
     }
 
     public void StopDialogue(){
-        textComponent.text = string.Empty;
         didDisplay = false;
+        textComponent.text = string.Empty;
+
     }
 
     IEnumerator TypeLine()

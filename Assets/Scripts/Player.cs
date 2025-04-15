@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class Player : MonoBehaviour
 
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float energyLevel = 100f;
     public float energyConsumptionRate;
+    public float energyRecharge;
 
     [SerializeField]
     private Slider healthBar;
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float waterLevel = 100f;
     public float waterConsumptionRate;
+
+    public float waterRecharge;
      [SerializeField]
     private Slider waterSlider;
 
@@ -47,13 +51,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(inBed){
-            energyLevel+=0.01f;
+            energyLevel+=energyRecharge*Time.deltaTime;
+            //Debug.Log(Time.deltaTime);
             energyLevel = Mathf.Min(energyLevel, 99.0f);
+            UpdateSliders();
         }
 
         if(drinkingWater){
-            waterLevel+=0.005f;
+            waterLevel+=waterRecharge*Time.deltaTime;
             waterLevel = Mathf.Min(waterLevel, 100.0f);
+            UpdateSliders();
         }
 
         if(inShop && Input.GetKeyDown(KeyCode.E)){
@@ -79,8 +86,8 @@ public class Player : MonoBehaviour
     }
 
     public void UpdateNeedsLevels(){
-        energyLevel -= energyConsumptionRate;
-        waterLevel -= waterConsumptionRate;
+        if(!inBed)energyLevel -= energyConsumptionRate;
+        if(!drinkingWater) waterLevel -= waterConsumptionRate;
         UpdateSliders();
     }
 
