@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -57,6 +58,12 @@ public class PlayerMovement : MonoBehaviour
     void OnDie()
     {
         animator.SetTrigger("isDead");
+        StartCoroutine(LoadMenuScene());
+    }
+
+    IEnumerator LoadMenuScene(){
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("TitleScreen");
     }
 
     void OnDamage()

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,8 @@ public class Dialogue : MonoBehaviour
     public TMP_Text woodcount;
 
     public GameObject orc;
+
+    public List<GameObject>extraOrcs;
 
     public GameObject keyImage;
 
@@ -77,6 +80,9 @@ public class Dialogue : MonoBehaviour
 
         if(index == 2)
         {
+            foreach(GameObject x in extraOrcs){
+                x.SetActive(true);
+            }
             keyImage.SetActive(true);
             isKey = true;
         }
